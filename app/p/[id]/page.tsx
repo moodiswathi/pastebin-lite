@@ -96,7 +96,7 @@ const v = {
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: "20px",
-    flexWrap: "wrap" as const, // Allows stacking on mobile
+    flexWrap: "wrap" as const,
     gap: "15px",
   },
   title: {
@@ -107,7 +107,7 @@ const v = {
   badgeGroup: {
     display: "flex",
     gap: "10px",
-    flexWrap: "wrap" as const, // Badges wrap if screen is too narrow
+    flexWrap: "wrap" as const,
   },
   badgeT: {
     background: "rgba(251,191,36,0.1)",
@@ -158,8 +158,8 @@ const v = {
     fontFamily: "var(--font-mono), monospace",
     lineHeight: "1.6",
     overflowX: "auto" as const,
-    whiteSpace: "pre-wrap" as const, // Ensures code wraps on small screens
-    wordBreak: "break-all" as const, // Prevents overflow from long strings
+    whiteSpace: "pre-wrap" as const,
+    wordBreak: "break-all" as const,
     fontSize: "clamp(0.85rem, 2.5vw, 1rem)",
   },
   msg: {

@@ -33,7 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     expires_at: ttl_seconds ? now + parseInt(ttl_seconds, 10) * 1000 : null,
   };
 
-  // Do NOT use JSON.stringify here
+ 
   await redis.set(`paste:${id}`, pasteData);
 
   const baseUrl = process.env.APP_URL || `http://${req.headers.host}`;

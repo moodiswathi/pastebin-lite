@@ -93,13 +93,13 @@ const s = {
     justifyContent: "center",
     alignItems: "center",
     minHeight: "100vh",
-    padding: "20px", // Reduced padding for mobile breathing room
+    padding: "20px",
     boxSizing: "border-box" as const,
   },
   glassCard: {
     background: "rgba(30, 41, 59, 0.7)",
     backdropFilter: "blur(12px)",
-    padding: "clamp(20px, 5vw, 40px)", // Fluid padding
+    padding: "clamp(20px, 5vw, 40px)",
     borderRadius: "24px",
     width: "100%",
     maxWidth: "700px",
@@ -109,7 +109,7 @@ const s = {
     boxSizing: "border-box" as const,
   },
   gradientText: {
-    fontSize: "clamp(1.8rem, 6vw, 2.5rem)", // Text scales with screen size
+    fontSize: "clamp(1.8rem, 6vw, 2.5rem)",
     fontWeight: "800",
     textAlign: "center",
     margin: "0 0 10px 0",
@@ -136,11 +136,11 @@ const s = {
     outline: "none",
     marginBottom: "20px",
     boxSizing: "border-box" as const,
-    fontSize: "16px", // Prevents iOS zoom-on-focus
+    fontSize: "16px",
   },
   grid: {
     display: "grid",
-    // Automatically stacks on mobile, 2 columns on desktop
+
     gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
     gap: "20px",
     marginBottom: "25px",
@@ -160,7 +160,7 @@ const s = {
     color: "white",
     outline: "none",
     fontFamily: "var(--font-inter)",
-    fontSize: "16px", // Standard size for mobile inputs
+    fontSize: "16px",
   },
   button: {
     width: "100%",
