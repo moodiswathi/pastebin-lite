@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 
-// Interface for the API response
 interface CreatePasteResponse {
   url?: string;
   error?: string;
@@ -93,21 +92,24 @@ const s = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    padding: "40px 20px",
+    minHeight: "100vh",
+    padding: "20px", // Reduced padding for mobile breathing room
+    boxSizing: "border-box" as const,
   },
   glassCard: {
     background: "rgba(30, 41, 59, 0.7)",
     backdropFilter: "blur(12px)",
-    padding: "40px",
+    padding: "clamp(20px, 5vw, 40px)", // Fluid padding
     borderRadius: "24px",
     width: "100%",
     maxWidth: "700px",
     border: "1px solid rgba(255,255,255,0.1)",
     boxShadow: "0 25px 50px -12px rgba(0,0,0,0.5)",
     fontFamily: "var(--font-inter), sans-serif",
+    boxSizing: "border-box" as const,
   },
   gradientText: {
-    fontSize: "2.5rem",
+    fontSize: "clamp(1.8rem, 6vw, 2.5rem)", // Text scales with screen size
     fontWeight: "800",
     textAlign: "center",
     margin: "0 0 10px 0",
@@ -115,7 +117,12 @@ const s = {
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
   },
-  subtitle: { textAlign: "center", color: "#94a3b8", marginBottom: "30px" },
+  subtitle: {
+    textAlign: "center" as const,
+    color: "#94a3b8",
+    marginBottom: "30px",
+    fontSize: "clamp(0.9rem, 3vw, 1rem)",
+  },
   textarea: {
     width: "100%",
     height: "200px",
@@ -129,10 +136,12 @@ const s = {
     outline: "none",
     marginBottom: "20px",
     boxSizing: "border-box" as const,
+    fontSize: "16px", // Prevents iOS zoom-on-focus
   },
   grid: {
     display: "grid",
-    gridTemplateColumns: "1fr 1fr",
+    // Automatically stacks on mobile, 2 columns on desktop
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
     gap: "20px",
     marginBottom: "25px",
   },
@@ -147,10 +156,11 @@ const s = {
     background: "#0f172a",
     border: "1px solid #334155",
     borderRadius: "8px",
-    padding: "10px",
+    padding: "12px",
     color: "white",
     outline: "none",
     fontFamily: "var(--font-inter)",
+    fontSize: "16px", // Standard size for mobile inputs
   },
   button: {
     width: "100%",
@@ -162,12 +172,14 @@ const s = {
     fontWeight: "700",
     cursor: "pointer",
     fontFamily: "var(--font-inter)",
+    fontSize: "1rem",
   },
   result: {
     marginTop: "25px",
     padding: "20px",
     background: "rgba(99, 102, 241, 0.1)",
     borderRadius: "12px",
+    boxSizing: "border-box" as const,
   },
   linkInput: {
     width: "100%",
@@ -175,8 +187,10 @@ const s = {
     border: "none",
     color: "#818cf8",
     fontWeight: "bold",
-    fontSize: "1rem",
+    fontSize: "clamp(0.8rem, 3vw, 1rem)",
     outline: "none",
     fontFamily: "var(--font-mono)",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
   },
 } as const;

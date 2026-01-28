@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 
-// Define the shape of your data to satisfy TypeScript
 interface PasteData {
   content: string;
   remaining_views: number;
@@ -14,7 +13,6 @@ export default function PastePage() {
   const params = useParams();
   const id = params?.id as string;
 
-  // Replace <any> with <PasteData | null>
   const [data, setData] = useState<PasteData | null>(null);
   const [timeLeft, setTimeLeft] = useState("");
   const [error, setError] = useState("");
@@ -55,14 +53,7 @@ export default function PastePage() {
     return (
       <div style={v.msg}>
         ❌ {error} <br />
-        <Link
-          href="/"
-          style={{
-            color: "#6366f1",
-            marginTop: "1rem",
-            display: "inline-block",
-          }}
-        >
+        <Link href="/" style={v.linkPrimary}>
           Create New
         </Link>
       </div>
@@ -73,10 +64,8 @@ export default function PastePage() {
   return (
     <div style={v.container}>
       <div style={v.header}>
-        <h2 style={{ margin: 0, fontFamily: "var(--font-inter)" }}>
-          📄 Content
-        </h2>
-        <div style={{ display: "flex", gap: "10px" }}>
+        <h2 style={v.title}>📄 Content</h2>
+        <div style={v.badgeGroup}>
           <span style={v.badgeT}>⏱️ {timeLeft}</span>
           <span style={v.badgeV}>👀 {data.remaining_views} left</span>
           <button onClick={copy} style={copied ? v.btnS : v.btn}>
@@ -86,14 +75,7 @@ export default function PastePage() {
       </div>
       <pre style={v.pre}>{data.content}</pre>
       <div style={{ textAlign: "center", marginTop: "30px" }}>
-        <Link
-          href="/"
-          style={{
-            color: "#94a3b8",
-            textDecoration: "none",
-            fontSize: "0.9rem",
-          }}
-        >
+        <Link href="/" style={v.backLink}>
           ← Back to Dashboard
         </Link>
       </div>
@@ -102,30 +84,50 @@ export default function PastePage() {
 }
 
 const v = {
-  container: { maxWidth: "900px", margin: "60px auto", padding: "0 20px" },
+  container: {
+    maxWidth: "900px",
+    margin: "clamp(20px, 8vw, 60px) auto",
+    padding: "0 20px",
+    boxSizing: "border-box" as const,
+    width: "100%",
+  },
   header: {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: "20px",
+    flexWrap: "wrap" as const, // Allows stacking on mobile
+    gap: "15px",
+  },
+  title: {
+    margin: 0,
+    fontFamily: "var(--font-inter)",
+    fontSize: "clamp(1.2rem, 4vw, 1.5rem)",
+  },
+  badgeGroup: {
+    display: "flex",
+    gap: "10px",
+    flexWrap: "wrap" as const, // Badges wrap if screen is too narrow
   },
   badgeT: {
     background: "rgba(251,191,36,0.1)",
     color: "#fbbf24",
     padding: "6px 12px",
     borderRadius: "20px",
-    fontSize: "0.8rem",
+    fontSize: "0.75rem",
     fontWeight: "bold",
     fontFamily: "var(--font-inter)",
+    whiteSpace: "nowrap" as const,
   },
   badgeV: {
     background: "rgba(244,63,94,0.1)",
     color: "#fb7185",
     padding: "6px 12px",
     borderRadius: "20px",
-    fontSize: "0.8rem",
+    fontSize: "0.75rem",
     fontWeight: "bold",
     fontFamily: "var(--font-inter)",
+    whiteSpace: "nowrap" as const,
   },
   btn: {
     background: "#6366f1",
@@ -149,18 +151,34 @@ const v = {
   },
   pre: {
     background: "#1e293b",
-    padding: "30px",
+    padding: "clamp(15px, 4vw, 30px)",
     borderRadius: "16px",
     border: "1px solid #334155",
     color: "#e2e8f0",
     fontFamily: "var(--font-mono), monospace",
     lineHeight: "1.6",
-    overflowX: "auto",
+    overflowX: "auto" as const,
+    whiteSpace: "pre-wrap" as const, // Ensures code wraps on small screens
+    wordBreak: "break-all" as const, // Prevents overflow from long strings
+    fontSize: "clamp(0.85rem, 2.5vw, 1rem)",
   },
   msg: {
-    textAlign: "center",
+    textAlign: "center" as const,
     marginTop: "100px",
+    padding: "0 20px",
     fontSize: "1.2rem",
     fontFamily: "var(--font-inter)",
+  },
+  linkPrimary: {
+    color: "#6366f1",
+    marginTop: "1rem",
+    display: "inline-block",
+    textDecoration: "none",
+    fontWeight: "bold",
+  },
+  backLink: {
+    color: "#94a3b8",
+    textDecoration: "none",
+    fontSize: "0.9rem",
   },
 } as const;
